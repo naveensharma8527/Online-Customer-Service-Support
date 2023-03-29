@@ -59,23 +59,23 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<MyErrorDetails>(err, HttpStatus.BAD_REQUEST);
 	}
   @ExceptionHandler(CustomerException.class)
-	public ResponseEntity<ErrorDetails> CustomerExceptionHandler(CustomerException e,WebRequest req)
+	public ResponseEntity<MyErrorDetails> CustomerExceptionHandler(CustomerException e,WebRequest req)
 	{
-		ErrorDetails ed=new ErrorDetails(LocalDateTime.now(),e.getMessage(),req.getDescription(false));
+	  MyErrorDetails ed=new MyErrorDetails(LocalDateTime.now(),e.getMessage(),req.getDescription(false));
 		return new ResponseEntity<>(ed,HttpStatus.BAD_REQUEST);
 	}
 	
 	@ExceptionHandler(DepartmentException.class)
-	public ResponseEntity<ErrorDetails> DepartmentExceptionHandler(DepartmentException e,WebRequest req)
+	public ResponseEntity<MyErrorDetails> DepartmentExceptionHandler(DepartmentException e,WebRequest req)
 	{
-		ErrorDetails ed=new ErrorDetails(LocalDateTime.now(),e.getMessage(),req.getDescription(false));
+		MyErrorDetails ed=new MyErrorDetails(LocalDateTime.now(),e.getMessage(),req.getDescription(false));
 		return new ResponseEntity<>(ed,HttpStatus.BAD_REQUEST);
 	}
 	
 	@ExceptionHandler(OperatorException.class)
-	public ResponseEntity<ErrorDetails> OperatorExceptionHandler(OperatorException e,WebRequest req)
+	public ResponseEntity<MyErrorDetails> OperatorExceptionHandler(OperatorException e,WebRequest req)
 	{
-		ErrorDetails ed=new ErrorDetails(LocalDateTime.now(),e.getMessage(),req.getDescription(false));
+		MyErrorDetails ed=new MyErrorDetails(LocalDateTime.now(),e.getMessage(),req.getDescription(false));
 		return new ResponseEntity<>(ed,HttpStatus.BAD_REQUEST);
   }
 	

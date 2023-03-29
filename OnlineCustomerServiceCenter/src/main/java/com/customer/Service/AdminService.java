@@ -11,6 +11,7 @@ import com.customer.Exception.LoginException;
 import com.customer.Exception.OperatorException;
 
 public interface AdminService {
+	
 	public Department addDepartment(Department d,String key) throws LoginException;
 	public Department updateDepartment(Department d,String key) throws DepartmentException,LoginException;
 	public Department removeDepartment(Integer id,String key) throws DepartmentException,LoginException;

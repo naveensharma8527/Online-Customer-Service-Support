@@ -38,7 +38,7 @@ public class Customer {
 	@NotBlank(message = "Password cannot be Blank")
 	@NotEmpty(message = "Password cannot be Empty")
 	@NotNull(message = "Password cannot be Null")
-	private String password;
+	private String password; 
 	private String city;
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "customer")
 	private List<Issue> issue = new ArrayList<>();
