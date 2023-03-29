@@ -10,11 +10,11 @@ import com.customer.Exception.IssueException;
 
 public interface OperatorService {
 	
-	public String AddCustomerIssue(Customer customer) throws CustomerException;
+	public String AddCustomerIssue(Issue issue) throws IssueException;
 	
 	public String UpdateIssue(Issue issue) throws IssueException;
 	
-	public String closeCustomerIssue(int IssueId, Status status) throws IssueException;
+	public String closeCustomerIssue(Integer IssueId, Status status) throws IssueException;
 	
 	public List<Customer> findAllCustomer() throws CustomerException;
 	
