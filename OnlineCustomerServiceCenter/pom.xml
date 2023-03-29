@@ -8,11 +8,11 @@
 		<version>3.0.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.masai</groupId>
+	<groupId>com.customer</groupId>
 	<artifactId>OnlineCustomerServiceCenter</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>OnlineCustomerServiceCenter</name>
-	<description>Online Customer Service Center is project in which customer get help to solve their problems via internet.Such a service is usually connected to a business or brand which sells products and offers support.</description>
+	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
