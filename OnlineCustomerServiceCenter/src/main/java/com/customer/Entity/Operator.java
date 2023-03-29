@@ -25,8 +25,7 @@ import jakarta.validation.constraints.NotNull;
 @Entity
 public class Operator {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "operatorGen")
-	@SequenceGenerator(name="operatorGen",sequenceName = "ogen",allocationSize = 1,initialValue = 100)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer operatorId;
 	@NotBlank(message = "First Name cannot be Blank")
 	@NotEmpty(message = "First Name cannot be Empty")
