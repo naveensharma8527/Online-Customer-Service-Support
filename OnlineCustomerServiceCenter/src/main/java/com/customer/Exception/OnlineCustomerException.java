@@ -1,5 +1,6 @@
 package com.customer.Exception;
 
+@SuppressWarnings("serial")
 public class OnlineCustomerException  extends RuntimeException{
 
 	public OnlineCustomerException() {
