@@ -1,6 +1,7 @@
 package com.customer.Exception;
 
-public class DepartmentException extends Exception{
+@SuppressWarnings("serial")
+public class DepartmentException extends RuntimeException{
 	public DepartmentException()
 	{
 		

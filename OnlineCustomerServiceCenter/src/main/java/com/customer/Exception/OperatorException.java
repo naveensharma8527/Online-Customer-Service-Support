@@ -1,6 +1,7 @@
 package com.customer.Exception;
 
-public class OperatorException extends Exception{
+@SuppressWarnings("serial")
+public class OperatorException extends RuntimeException{
 	public OperatorException()
 	{
 		
