@@ -15,6 +15,6 @@ public interface CustomerService {
 	public String forgetPassword(Integer id) throws CustomerException;
 	public Customer emailPassword(Integer id,String key) throws CustomerException;
 	public Issue viewissue(Integer id, String key) throws CustomerException;
-	public List<Issue> getAllIssue(Integer id,String key) throws CustomerException;
-	public String reopenIssue(Integer id, Integer cid, String key) throws CustomerException;
+	public List<Issue> getAllIssue(String key) throws CustomerException;
+	public String reopenIssue(Integer id,String key) throws CustomerException;
 }
