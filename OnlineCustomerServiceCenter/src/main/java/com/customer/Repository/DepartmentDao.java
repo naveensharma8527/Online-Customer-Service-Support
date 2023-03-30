@@ -1,6 +1,11 @@
 package com.customer.Repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface DepartmentDao {
+import com.customer.Entity.Department;
 
+public interface DepartmentDao extends JpaRepository<Department, Integer>	 {
+        
+	
+	   
 }
