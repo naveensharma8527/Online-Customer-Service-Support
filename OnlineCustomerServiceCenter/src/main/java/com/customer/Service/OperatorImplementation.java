@@ -13,8 +13,6 @@ import com.customer.Exception.CustomerException;
 import com.customer.Exception.IssueException;
 import com.customer.Repository.CustomerRepository;
 import com.customer.Repository.IssueRepository;
-import com.customer.Repository.OperatorDao;
-import com.customer.Repository.OperatorRepository;
 
 
 @Service
@@ -58,19 +56,19 @@ public class OperatorImplementation implements OperatorService {
 			Issue issue = i.get();
 			issue.setStatus(status);
 			iR.save(issue);
-			return "Issue with id: " + IssueId + " has been sussuccessfully updated";
+			return "Issue with id: " + IssueId + " has been sussuccessfully closed";
 		} else throw new IssueException(message);
 	}
 
 	@Override
 	public List<Customer> findAllCustomer() throws CustomerException {
 		List<Customer> list = cR.findAll();
-		if(list != null) return list;
-		else throw new CustomerException("No Customer found");
+		if(list == null) throw new CustomerException("No Customer found");
+		else return list;
 	}
 
 	@Override
-	public Customer findByCustomerId(int cusId) throws CustomerException {
+	public Customer findByCustomerId(Integer cusId) throws CustomerException {
 		Optional<Customer> c = cR.findById(cusId);
 		if(c.get() != null) return c.get();
 		else throw new CustomerException("Invalid Customer ID.");
@@ -85,7 +83,7 @@ public class OperatorImplementation implements OperatorService {
 
 	@Override
 	public Customer findCustomerByEmail(String email) throws CustomerException {
-		Customer c = cR.findCustomerByEmail(email);
+		Customer c = cR.findByEmail(email);
 		if(c != null) return c;
 		else throw new CustomerException("Invalid Email/Could Not find any customer with the provided email.");
 	}
@@ -95,7 +93,6 @@ public class OperatorImplementation implements OperatorService {
 		Customer c = cR.findCustomerByMobile(mobile);
 		if(c != null) return c;
 		else throw new CustomerException("Invalid mobile number/Could Not find any customer with the provided mobile number.");
-	
 	}
 
 }

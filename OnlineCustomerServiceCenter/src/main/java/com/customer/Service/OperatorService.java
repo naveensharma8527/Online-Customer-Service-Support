@@ -18,7 +18,7 @@ public interface OperatorService {
 	
 	public List<Customer> findAllCustomer() throws CustomerException;
 	
-	public Customer findByCustomerId(int cusId) throws CustomerException;
+	public Customer findByCustomerId(Integer cusId) throws CustomerException;
 	
 	public List<Customer> findCustomerByFirstName(String name) throws CustomerException;
 	
