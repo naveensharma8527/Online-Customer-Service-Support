@@ -73,35 +73,35 @@ public class LoginServiceImpl implements LoginService {
 		}
 
 		/// checking for Admin
-//		if (login.getUser_Type().equals("ADMIN")) {
-//
-//			Admin existAdmin = adminDao.findByEmail(login.getEmail());
-//			if (existAdmin == null)
-//				throw new LoginException("Please Enter a valid loginS");
-//
-//			Optional<CurrentUserSession> validAdminSessionOpt = sessionDao.findById(existAdmin.getAdminId());
-//
-//			if (validAdminSessionOpt.isPresent()) {
-//
-//				throw new LoginException("Admin already Logged in");
-//
-//			}
-//
-//			// Check Admin Password
-//
-//			if (existAdmin.getPassword().equals(login.getPassword())) {
-//
-//				String key = UUID.randomUUID().toString();
-//
-//				currentUserSession = new CurrentUserSession(existAdmin.getAdminId(), key, LocalDateTime.now(),
-//						login.getUser_Type());
-//
-//				sessionDao.save(currentUserSession);
-//
-//				return key;
-//			} else
-//				throw new LoginException("Passowrd incorrect");
-//		}
+		if (login.getUser_Type().equals("ADMIN")) {
+
+			Admin existAdmin = adminDao.findByEmail(login.getEmail());
+			if (existAdmin == null)
+				throw new LoginException("Please Enter a valid loginS");
+
+			Optional<CurrentUserSession> validAdminSessionOpt = sessionDao.findById(existAdmin.getAdminId());
+
+			if (validAdminSessionOpt.isPresent()) {
+
+				throw new LoginException("Admin already Logged in");
+
+			}
+
+			// Check Admin Password
+
+			if (existAdmin.getPassword().equals(login.getPassword())) {
+
+				String key = UUID.randomUUID().toString();
+
+				currentUserSession = new CurrentUserSession(existAdmin.getAdminId(), key, LocalDateTime.now(),
+						login.getUser_Type());
+
+				sessionDao.save(currentUserSession);
+
+				return key;
+			} else
+				throw new LoginException("Passowrd incorrect");
+		}
 
 //		if (login.getUser_Type().equals("OPERATOR")) {
 //
