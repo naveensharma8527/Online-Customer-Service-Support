@@ -1,9 +1,9 @@
 package com.customer.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import com.customer.DTO.OperatorDTO;
 import com.customer.Entity.Department;
@@ -12,32 +12,61 @@ import com.customer.Exception.DepartmentException;
 import com.customer.Exception.LoginException;
 import com.customer.Exception.OperatorException;
 import com.customer.Repository.AdminRepository;
+import com.customer.Repository.DepartmentDao;
 
-
-@Service
-public class AdminServiceImp implements AdminService {
+public class AdminServiceImp implements AdminService{
 	
-	   @Autowired
-	   public AdminRepository adminRepository;
-	   
+	@Autowired
+	private AdminRepository adminRepo;
+	
+	@Autowired
+	private DepartmentDao deptDao;
+	
+	
 
 	@Override
 	public Department addDepartment(Department d, String key) throws LoginException {
 		// TODO Auto-generated method stub
-		  
-		return null;
+		
+		// verify login with given key 
+		if(true) {
+			Department d1 = deptDao.save(d);
+			
+			return d1;
+		}else {
+			 throw new LoginException("You are not authorized to add department");
+		}
+		
+		
 	}
 
 	@Override
 	public Department updateDepartment(Department d, String key) throws DepartmentException, LoginException {
 		// TODO Auto-generated method stub
-		return null;
+		
+		       // verify login with given key 
+				if(true) {
+					Department d1 = deptDao.findById(d.getDeptId()).orElseThrow(() -> new DepartmentException("There is not deparmtent with id "+d.getDeptId()));
+					  d1.setDeptName(d.getDeptName());
+					  d1.getOperators().addAll(d.getOperators());
+					return deptDao.save(d1);
+				}else {
+					 throw new LoginException("You are not authorized to update department");
+				}
 	}
 
 	@Override
 	public Department removeDepartment(Integer id, String key) throws DepartmentException, LoginException {
 		// TODO Auto-generated method stub
-		return null;
+		   // verify login with given key 
+		if(true) {
+			Department d1 = deptDao.findById(id).orElseThrow(() -> new DepartmentException("There is not deparmtent with id "+id));
+			 
+			 deptDao.delete(d1);
+			 return d1;
+		}else {
+			 throw new LoginException("You are not authorized to update department");
+		}
 	}
 
 	@Override
@@ -88,5 +117,6 @@ public class AdminServiceImp implements AdminService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+       
+	
 }
