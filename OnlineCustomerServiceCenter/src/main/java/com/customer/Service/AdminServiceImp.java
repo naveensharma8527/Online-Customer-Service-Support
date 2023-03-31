@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.customer.DTO.OperatorDTO;
 import com.customer.Entity.Department;
@@ -15,6 +16,7 @@ import com.customer.Repository.AdminRepository;
 import com.customer.Repository.DepartmentDao;
 import com.customer.Repository.OperatorDao;
 
+@Service
 public class AdminServiceImp implements AdminService{
 	
 	@Autowired

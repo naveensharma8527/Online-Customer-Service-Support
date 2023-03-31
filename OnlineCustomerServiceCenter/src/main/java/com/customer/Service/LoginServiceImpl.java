@@ -103,37 +103,37 @@ public class LoginServiceImpl implements LoginService {
 				throw new LoginException("Passowrd incorrect");
 		}
 
-//		if (login.getUser_Type().equals("OPERATOR")) {
-//
-//			Operator existingOperator = operatorDao.findByEmail(login.getEmail());
-//			if (existingOperator == null)
-//				throw new LoginException("Please Enter a valid loginS");
-//
-//			java.util.Optional<CurrentUserSession> validOperatorSessionOpt = sessionDao
-//					.findById(existingOperator.getOperatorId());
-//
-//			if (validOperatorSessionOpt.isPresent()) {
-//
-//				throw new LoginException("User already Logged In with this Email");
-//
-//			}
-//
-//			if (existingOperator.equals(login.getPassword())) {
-//
-//				String key = UUID.randomUUID().toString();
-//
-//				currentUserSession = new CurrentUserSession(existingOperator.getOperatorId(), key, LocalDateTime.now(),
-//						login.getUser_Type());
-//
-//				sessionDao.save(currentUserSession);
-//
-//				return key;
-//			} else
-//				throw new LoginException("Passowrd incorrect");
-//		} else
-//			throw new LoginException("Please Enter a valid User");
+		if (login.getUser_Type().equals("OPERATOR")) {
+
+			Operator existingOperator = operatorDao.findByEmail(login.getEmail());
+			if (existingOperator == null)
+				throw new LoginException("Please Enter a valid loginS");
+
+			java.util.Optional<CurrentUserSession> validOperatorSessionOpt = sessionDao
+					.findById(existingOperator.getOperatorId());
+
+			if (validOperatorSessionOpt.isPresent()) {
+
+				throw new LoginException("User already Logged In with this Email");
+
+			}
+
+			if (existingOperator.equals(login.getPassword())) {
+
+				String key = UUID.randomUUID().toString();
+
+				currentUserSession = new CurrentUserSession(existingOperator.getOperatorId(), key, LocalDateTime.now(),
+						login.getUser_Type());
+
+				sessionDao.save(currentUserSession);
+
+				return key;
+			} else
+				throw new LoginException("Passowrd incorrect");
+		} else
+			throw new LoginException("Please Enter a valid User");
 		
-		return null;
+		
 		
 	}
 
