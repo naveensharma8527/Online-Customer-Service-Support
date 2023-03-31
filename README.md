@@ -6,7 +6,13 @@
         src="https://user-images.githubusercontent.com/101116044/229041152-8b11c323-544b-4675-85be-1f4efec72c55.jpg"
         alt=""
       />
-Online Customer Service 
+Online Customer Service Center management system is designed to efficiently store and retrieve important information related to customers, issues, and operators. Customers can easily raise any issues they may be experiencing, and operators can provide them with solutions.
+
+-This is a collaborative project, completed by a team of 4 backend developers.
+
+
+-We have created a RESTful API for this application. This API is capable of performing all the essential CRUD operations on data related to customers, operators, and admins. This means that we can create, read, update, and delete all relevant information within the system using the API. With our API, we are able to seamlessly integrate various features and functionalities into the application, ensuring a smooth and user-friendly experience for all users.
+
 
 ## Tech Stack
 
