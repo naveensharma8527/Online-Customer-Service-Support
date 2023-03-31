@@ -8,7 +8,7 @@
       />
 Online Customer Service Center management system is designed to efficiently store and retrieve important information related to customers, issues, and operators. Customers can easily raise any issues they may be experiencing, and operators can provide them with solutions.
 
--This is a collaborative project, completed by a team of 4 backend developers.
+-This is a collaborative project, completed by a team of 5 backend developers.
 
 
 -We have created a RESTful API for this application. This API is capable of performing all the essential CRUD operations on data related to customers, operators, and admins. This means that we can create, read, update, and delete all relevant information within the system using the API. With our API, we are able to seamlessly integrate various features and functionalities into the application, ensuring a smooth and user-friendly experience for all users.
@@ -64,6 +64,11 @@ http://localhost:8080/swagger-ui/index.html
 ## Collaborators
 
 - [Naveen Sharma](https://github.com/naveensharma8527) (Team Lead)
+- [Priyanshu](https://github.com/Siddharth263) 
+- [Narendra Swami](https://github.com/NarendraKumarSwami) 
+- [Gitesh Sutar](https://github.com/gitesh8) 
+- [Shubham Dubey](https://github.com/)
+
 
 
 
