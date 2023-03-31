@@ -2,8 +2,8 @@
 
 <img
   align="right"
-        width="20%"
-        src=""
+        width="40%"
+        src="https://user-images.githubusercontent.com/101116044/229041152-8b11c323-544b-4675-85be-1f4efec72c55.jpg"
         alt=""
       />
 Online Customer Service 
