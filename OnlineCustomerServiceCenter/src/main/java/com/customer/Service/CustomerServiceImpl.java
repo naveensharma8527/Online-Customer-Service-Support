@@ -30,6 +30,12 @@ public class CustomerServiceImpl implements CustomerService{
 	@Override
 	public Customer registerCustomer(Customer customer) {
 		// TODO Auto-generated method stub
+		
+		List<Issue> issue = customer.getIssue();
+		
+		for(Issue i:issue) {
+			i.setCustomer(customer);
+		}
 		return cr.save(customer);
 	}
 
@@ -63,7 +69,7 @@ public class CustomerServiceImpl implements CustomerService{
 	}
 
 	@Override
-	public Customer emailPassword(Integer id,String key) throws CustomerException {
+	public Customer emailPassword(Integer id) throws CustomerException {
 		// TODO Auto-generated method stub
 		
 		Customer c = cr.findById(id).get();
@@ -72,13 +78,7 @@ public class CustomerServiceImpl implements CustomerService{
 			throw new CustomerException("Invalid Customer Id");
 		}
 		else {
-			CurrentUserSession session = currentsession.findByUuid(key);
-			if(session==null) {
-				throw new CustomerException("Please Login to continue");
-			}
-			else {
-				return c;
-			}
+			return c;
 		}
 	}
 
@@ -156,5 +156,4 @@ public class CustomerServiceImpl implements CustomerService{
 			}
 		}
 	}
-
 }
