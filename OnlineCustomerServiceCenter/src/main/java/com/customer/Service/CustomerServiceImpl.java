@@ -49,9 +49,9 @@ public class CustomerServiceImpl implements CustomerService{
 			throw new CustomerException("Invalid Credentials");
 		}
 		
-		c.setPassword("123456789");
+		c.setPassword(login.getPassword());
 		cr.save(c);
-		return "Your Temporary Password is '123456789'";
+		return "Password Changed";
 	}
 
 	@Override
