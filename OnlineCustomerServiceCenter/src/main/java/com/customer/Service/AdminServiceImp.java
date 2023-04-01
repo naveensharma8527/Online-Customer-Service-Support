@@ -1,20 +1,22 @@
 package com.customer.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.customer.DTO.OperatorDTO;
+import com.customer.Entity.CurrentUserSession;
 import com.customer.Entity.Department;
 import com.customer.Entity.Operator;
 import com.customer.Exception.DepartmentException;
 import com.customer.Exception.LoginException;
 import com.customer.Exception.OperatorException;
 import com.customer.Repository.AdminRepository;
+import com.customer.Repository.CurrentUserSessionRepository;
 import com.customer.Repository.DepartmentDao;
 import com.customer.Repository.OperatorDao;
+
 
 @Service
 public class AdminServiceImp implements AdminService{
@@ -29,6 +31,9 @@ public class AdminServiceImp implements AdminService{
 	@Autowired
 	private OperatorDao optDao;
 	
+	@Autowired
+	private CurrentUserSessionRepository cDao;
+	
 	
 
 	@Override
@@ -36,7 +41,8 @@ public class AdminServiceImp implements AdminService{
 		// TODO Auto-generated method stub
 		
 		// verify login with given key 
-		if(true) {
+		CurrentUserSession cs =   cDao.findByUuid(key);
+		if(cs != null && cs.getUser_Type().equalsIgnoreCase("Admin")) {
 			Department d1 = deptDao.save(d);
 			
 			return d1;
@@ -50,9 +56,12 @@ public class AdminServiceImp implements AdminService{
 	@Override
 	public Department updateDepartment(Department d, String key) throws DepartmentException, LoginException {
 		// TODO Auto-generated method stub
-		
+		         
+		            
+		           
 		       // verify login with given key 
-				if(true) {
+		CurrentUserSession cs =   cDao.findByUuid(key);
+		if(cs != null && cs.getUser_Type().equalsIgnoreCase("Admin")) {
 					Department d1 = deptDao.findById(d.getDeptId()).orElseThrow(() -> new DepartmentException("There is not deparmtent with id "+d.getDeptId()));
 					  d1.setDeptName(d.getDeptName());
 					  d1.getOperators().addAll(d.getOperators());
@@ -66,7 +75,8 @@ public class AdminServiceImp implements AdminService{
 	public Department removeDepartment(Integer id, String key) throws DepartmentException, LoginException {
 		// TODO Auto-generated method stub
 		   // verify login with given key 
-		if(true) {
+		CurrentUserSession cs =   cDao.findByUuid(key);
+		if(cs != null && cs.getUser_Type().equalsIgnoreCase("Admin")) {
 			Department d1 = deptDao.findById(id).orElseThrow(() -> new DepartmentException("There is not deparmtent with id "+id));
 			 
 			 deptDao.delete(d1);
@@ -80,7 +90,8 @@ public class AdminServiceImp implements AdminService{
 	public Department getDepartmentById(Integer id, String key) throws DepartmentException, LoginException {
 		// TODO Auto-generated method stub
 		   // verify login with given key 
-			if(true) {
+		CurrentUserSession cs =   cDao.findByUuid(key);
+		if(cs != null && cs.getUser_Type().equalsIgnoreCase("Admin")) {
 				Department d1 = deptDao.findById(id).orElseThrow(() -> new DepartmentException("There is not deparmtent with id "+id));
 				 
 				 return d1;
@@ -93,7 +104,8 @@ public class AdminServiceImp implements AdminService{
 	public Operator addOperator(Operator o, String key) throws LoginException {
 		// TODO Auto-generated method stub
 		   // verify login with given key 
-					if(true) {
+		CurrentUserSession cs =   cDao.findByUuid(key);
+		if(cs != null && cs.getUser_Type().equalsIgnoreCase("Admin")) {
 						  return optDao.save(o);
 						 
 						 
@@ -106,14 +118,31 @@ public class AdminServiceImp implements AdminService{
 	public OperatorDTO assignDeptToOperator(Integer oid, Integer did, String key)
 			throws DepartmentException, OperatorException, LoginException {
 		// TODO Auto-generated method stub
-		return null;
+		CurrentUserSession cs =   cDao.findByUuid(key);
+		if(cs != null && cs.getUser_Type().equalsIgnoreCase("Admin")) {
+		
+			//find the department 
+		      Department dept =	    deptDao.findById(did).orElseThrow(() -> new DepartmentException("There is no department with this id "+did));
+			Operator  opt =		 optDao.findById(oid).orElseThrow(() -> new OperatorException("There is no operator with this  id "+oid));
+						  
+			      opt.setDepartment(dept);
+			      dept.getOperators().add(opt);
+			      
+			      deptDao.save(dept);
+			      optDao.save(opt);
+			      
+			      return new OperatorDTO(opt.getOperatorId(), dept.getDeptId());
+					}else {
+						 throw new LoginException("You are not authorized as Admin so you cannot add a operator");
+					}
 	}
 
 	@Override
 	public Operator updateOperator(Operator o, String key) throws OperatorException, LoginException {
 		// TODO Auto-generated method stub
 		 // verify login with given key 
-		if(true) {
+		CurrentUserSession cs =   cDao.findByUuid(key);
+		if(cs != null && cs.getUser_Type().equalsIgnoreCase("Admin")) {
 			  Operator opt =      optDao.findById(o.getOperatorId()).orElseThrow(() -> new OperatorException("There is no operator associated with thid operatorId "+o.getOperatorId()));
 			 
 			  // update the operator --
@@ -170,7 +199,8 @@ public class AdminServiceImp implements AdminService{
 		// TODO Auto-generated method stub
 		
 		 // verify login with given key 
-		if(true) {
+		CurrentUserSession cs =   cDao.findByUuid(key);
+		if(cs != null && cs.getUser_Type().equalsIgnoreCase("Admin")) {
 			Operator opt =     optDao.findById(id).orElseThrow(() -> new OperatorException("There is no operator with this id "+ id));
 			 
 			
@@ -190,7 +220,8 @@ public class AdminServiceImp implements AdminService{
 		
 		
 		 // verify login with given key 
-		if(true) {
+		CurrentUserSession cs =   cDao.findByUuid(key);
+		if(cs != null && cs.getUser_Type().equalsIgnoreCase("Admin")) {
 			  
 		   return	optDao.findAll();
 			 
@@ -203,7 +234,8 @@ public class AdminServiceImp implements AdminService{
 	public Operator getOperatorById(Integer id, String key) throws OperatorException, LoginException {
 		// TODO Auto-generated method stub
 		 // verify login with given key 
-		if(true) {
+		CurrentUserSession cs =   cDao.findByUuid(key);
+		if(cs != null && cs.getUser_Type().equalsIgnoreCase("Admin")) {
 			  
 		  return optDao.findById(id).orElseThrow(() -> new OperatorException("There is no operator with this id "+ id));
 			 
@@ -218,7 +250,8 @@ public class AdminServiceImp implements AdminService{
 	public List<Operator> getAllOperatorWithDeptId(Integer id, String key) throws DepartmentException, LoginException {
 		// TODO Auto-generated method stub
 		 // verify login with given key 
-		if(true) {
+		CurrentUserSession cs =   cDao.findByUuid(key);
+		if(cs != null && cs.getUser_Type().equalsIgnoreCase("Admin")) {
 			
 		   Department dept =	  deptDao.findById(id).orElseThrow(() -> new DepartmentException("There is no department with this id "+ id));
 			 
