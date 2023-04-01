@@ -65,7 +65,7 @@ public class CustomerServiceImpl implements CustomerService{
 		}
 		c.setPassword("123456789");
 		cr.save(c);
-		return "Your Temporary Password is '123456789'";
+		return "Password Changed";
 	}
 
 	@Override
