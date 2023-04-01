@@ -17,6 +17,8 @@ import com.customer.Entity.Issue;
 import com.customer.Entity.Status;
 import com.customer.Service.OperatorService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/operator")
 public class OperatorController {
@@ -25,7 +27,7 @@ public class OperatorController {
 	private OperatorService oS;
 	
 	@PostMapping("/add-issue")
-	public ResponseEntity<String> addCustomerIssueHandler(@RequestBody Issue issue) {
+	public ResponseEntity<String> addCustomerIssueHandler(@RequestBody @Valid Issue issue) {
 		
 		String s = oS.AddCustomerIssue(issue);
 		
@@ -33,13 +35,13 @@ public class OperatorController {
 	}
 	
 	@PostMapping("/update-issue")
-	public ResponseEntity<String> updateIssueHandler(@RequestBody Issue issue) {
+	public ResponseEntity<String> updateIssueHandler(@RequestBody @Valid Issue issue) {
 		String s = oS.UpdateIssue(issue);
 		return ResponseEntity.ok(s);
 	}
 	
 	@PostMapping("/close-issue/{issueid}")
-	public ResponseEntity<String> closeIssueHandler(@PathVariable Integer issueid, @RequestBody Status status) {
+	public ResponseEntity<String> closeIssueHandler(@PathVariable @Valid Integer issueid, @RequestBody @Valid Status status) {
 		String s = oS.closeCustomerIssue(issueid, status);
 		return ResponseEntity.ok(s);
 	}
@@ -52,25 +54,25 @@ public class OperatorController {
 	}
 	
 	@GetMapping("/customer/{cusId}")
-	public ResponseEntity<Customer> getCustomerByIdHandler(@PathVariable Integer cusId) {
+	public ResponseEntity<Customer> getCustomerByIdHandler(@PathVariable @Valid Integer cusId) {
 		Customer c = oS.findByCustomerId(cusId);
 		return ResponseEntity.ok(c);
 	}
 	
 	@GetMapping("/customer/{fName}")
-	public ResponseEntity<List<Customer>> getByFirstNameHandler(@PathVariable String fName) {
+	public ResponseEntity<List<Customer>> getByFirstNameHandler(@PathVariable @Valid String fName) {
 		List<Customer> c = oS.findCustomerByFirstName(fName);
 		return ResponseEntity.ok(c);
 	}
 	
 	@GetMapping("/customer/{email}")
-	public ResponseEntity<Customer> getByEmailHandler(@PathVariable String email) {
+	public ResponseEntity<Customer> getByEmailHandler(@PathVariable @Valid String email) {
 		Customer c = oS.findCustomerByEmail(email);
 		return ResponseEntity.ok(c);
 	}
 	
 	@GetMapping("/customer/{mobNo}")
-	public ResponseEntity<Customer> getByMobileHandler (@PathVariable String mobNo) {
+	public ResponseEntity<Customer> getByMobileHandler (@PathVariable @Valid String mobNo) {
 		Customer c = oS.findCustomerByMobile(mobNo);
 		return ResponseEntity.ok(c);
 	}
