@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import com.customer.Entity.Admin;
 
-
 @Repository
 public interface AdminRepository  extends JpaRepository<Admin, Integer>{
 	
