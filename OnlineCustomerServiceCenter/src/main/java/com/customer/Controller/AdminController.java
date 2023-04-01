@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.customer.DTO.OperatorDTO;
 import com.customer.Entity.Department;
 import com.customer.Entity.Operator;
 import com.customer.Exception.DepartmentException;
@@ -95,6 +96,11 @@ public class AdminController {
 	@PostMapping("operator/getdept/{key}")
 	public ResponseEntity<List<Operator>> getAllOperatorByDeptId(@RequestBody Integer deptId, @PathVariable String key){
 		   return new ResponseEntity<List<Operator>>(adminService.getAllOperatorWithDeptId(deptId, key), HttpStatus.OK);
+	}
+	
+	@PostMapping("operator/assign/{key}")
+	private ResponseEntity<OperatorDTO> assignDepartmentToOperator(@RequestBody OperatorDTO optDto, @PathVariable String key){
+		  return new ResponseEntity<OperatorDTO>(adminService.assignDeptToOperator(optDto.getId(),optDto.getDept_id(), key), HttpStatus.OK);
 	}
 	
 	
