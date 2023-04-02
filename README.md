@@ -37,6 +37,32 @@ Online Customer Service Center management system is designed to efficiently stor
 <img src="https://user-images.githubusercontent.com/101116044/229040119-f9c087f2-0668-4e7c-969f-f1c6b51d0be1.png" >
 
 
+<h1 align = "center"> Some functionalities images </h1>
+<h2 align = "center"> ** Admin Controller **</h2>
+
+
+![image](https://user-images.githubusercontent.com/101116044/229352143-fb794e14-be42-4775-8558-3973d240a81d.png)
+
+
+<h2 align = "center"> ** Customer Controller  **</h2>
+
+
+![image](https://user-images.githubusercontent.com/101116044/229352146-b88174df-a0fe-480a-8705-949a3a59a395.png)
+
+
+<h2 align = "center"> **Operator Controller **</h2>
+
+
+![image](https://user-images.githubusercontent.com/101116044/229352148-80ce9ac8-5482-4269-ad8b-054736a0dd9e.png)
+
+
+<h2 align = "center"> **Login Controller **</h2>
+
+
+![image](https://user-images.githubusercontent.com/101116044/229352147-3d3434f5-ae78-4331-a0b6-3821d81a605f.png)
+
+
+
 
 ## Installation & Run
 
