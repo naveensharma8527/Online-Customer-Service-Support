@@ -52,14 +52,14 @@ public class AdminController {
 	}
 	
 	
-	@DeleteMapping("/depart/delete/{key}")
-	private ResponseEntity<Department> deleteDepartment(@RequestBody Integer deptId, @PathVariable String key) throws LoginException, DepartmentException {
+	@DeleteMapping("/depart/delete/{deptId}/{key}")
+	private ResponseEntity<Department> deleteDepartment(@PathVariable Integer deptId, @PathVariable String key) throws LoginException, DepartmentException {
 		 
 		return new ResponseEntity<Department>(adminService.removeDepartment(deptId, key), HttpStatus.ACCEPTED);
 	}
 	
-	@PostMapping("depart/get/{key}")
-	public ResponseEntity<Department> getDepartmentById(@RequestBody Integer deptId, @PathVariable String key){
+	@GetMapping("depart/get/{deptId}/{key}")
+	public ResponseEntity<Department> getDepartmentById(@PathVariable Integer deptId, @PathVariable String key){
 		    
 	   return new ResponseEntity<Department>(adminService.getDepartmentById(deptId, key), HttpStatus.ACCEPTED);
 		
@@ -90,14 +90,14 @@ public class AdminController {
 	}
 	
 	
-	@PostMapping("operator/get/{key}")
-	public ResponseEntity<Operator> getOperatorById(@RequestBody Integer id, @PathVariable String key){
+	@GetMapping("operator/get/{id}/{key}")
+	public ResponseEntity<Operator> getOperatorById(@PathVariable Integer id, @PathVariable String key){
 		   return new ResponseEntity<Operator>(adminService.getOperatorById(id, key), HttpStatus.OK);
 	}
 	
-	@PostMapping("operator/getdept/{key}")
-	public ResponseEntity<List<Operator>> getAllOperatorByDeptId(@RequestBody Integer deptId, @PathVariable String key){
-		   return new ResponseEntity<List<Operator>>(adminService.getAllOperatorWithDeptId(deptId, key), HttpStatus.OK);
+	@GetMapping("operator/getdept/{id}/{key}")
+	public ResponseEntity<List<Operator>> getAllOperatorByDeptId(@PathVariable Integer id, @PathVariable String key){
+		   return new ResponseEntity<List<Operator>>(adminService.getAllOperatorWithDeptId(id, key), HttpStatus.OK);
 	}
 	
 	@PostMapping("operator/assign/{key}")
