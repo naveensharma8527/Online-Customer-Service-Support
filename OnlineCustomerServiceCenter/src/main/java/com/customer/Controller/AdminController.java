@@ -21,6 +21,8 @@ import com.customer.Exception.LoginException;
 import com.customer.Service.AdminService;
 import com.customer.Service.OperatorService;
 
+import jakarta.validation.Valid;
+
 @RestController
 public class AdminController {
 	
@@ -32,7 +34,7 @@ public class AdminController {
 	   
 	
 	@PostMapping("depart/add/{key}")
-	public ResponseEntity<Department>  addDepartment(@RequestBody Department deprt, @PathVariable String key){
+	public ResponseEntity<Department>  addDepartment(@Valid @RequestBody Department deprt, @PathVariable String key){
 		     
 		
 		   
@@ -41,7 +43,7 @@ public class AdminController {
 	}
 	
 	@PutMapping("depart/update/{key}")
-	public ResponseEntity<Department>  updateDepartment(@RequestBody Department deprt, @PathVariable String key) throws LoginException, DepartmentException{
+	public ResponseEntity<Department>  updateDepartment(@Valid @RequestBody Department deprt, @PathVariable String key) throws LoginException, DepartmentException{
 		     
 		
 		   
@@ -65,14 +67,14 @@ public class AdminController {
 	
 	
 	@PostMapping("operator/add/{key}")
-	public ResponseEntity<Operator>  addOPerator(@RequestBody Operator opt, @PathVariable String key){
+	public ResponseEntity<Operator>  addOPerator(@Valid @RequestBody Operator opt, @PathVariable String key){
 		     
          return new ResponseEntity<Operator>(adminService.addOperator(opt, key), HttpStatus.ACCEPTED);
 		 
 	}
 	
 	@PutMapping("operator/update/{key}")
-	public ResponseEntity<Operator>   updateOperator(@RequestBody Operator opt, @PathVariable String key){
+	public ResponseEntity<Operator>   updateOperator(@Valid @RequestBody Operator opt, @PathVariable String key){
 		   
 		return new ResponseEntity<Operator>(adminService.updateOperator(opt, key), HttpStatus.ACCEPTED);
 	}
@@ -99,7 +101,7 @@ public class AdminController {
 	}
 	
 	@PostMapping("operator/assign/{key}")
-	private ResponseEntity<OperatorDTO> assignDepartmentToOperator(@RequestBody OperatorDTO optDto, @PathVariable String key){
+	private ResponseEntity<OperatorDTO> assignDepartmentToOperator(@Valid @RequestBody OperatorDTO optDto, @PathVariable String key){
 		  return new ResponseEntity<OperatorDTO>(adminService.assignDeptToOperator(optDto.getId(),optDto.getDept_id(), key), HttpStatus.OK);
 	}
 	
