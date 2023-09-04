@@ -33,7 +33,7 @@ public class AdminController {
 	private OperatorService optService;
 	   
 	
-	@PostMapping("depart/add/{key}")
+	@PostMapping("/depart/add/{key}")
 	public ResponseEntity<Department>  addDepartment(@Valid @RequestBody Department deprt, @PathVariable String key){
 		     
 		
@@ -42,7 +42,7 @@ public class AdminController {
 		  return new ResponseEntity<>(adminService.addDepartment(deprt, key), HttpStatus.CREATED);
 	}
 	
-	@PutMapping("depart/update/{key}")
+	@PutMapping("/depart/update/{key}")
 	public ResponseEntity<Department>  updateDepartment(@Valid @RequestBody Department deprt, @PathVariable String key) throws LoginException, DepartmentException{
 		     
 		
@@ -58,7 +58,7 @@ public class AdminController {
 		return new ResponseEntity<Department>(adminService.removeDepartment(deptId, key), HttpStatus.ACCEPTED);
 	}
 	
-	@GetMapping("depart/get/{deptId}/{key}")
+	@GetMapping("/depart/get/{deptId}/{key}")
 	public ResponseEntity<Department> getDepartmentById(@PathVariable Integer deptId, @PathVariable String key){
 		    
 	   return new ResponseEntity<Department>(adminService.getDepartmentById(deptId, key), HttpStatus.ACCEPTED);
@@ -66,41 +66,41 @@ public class AdminController {
 	}
 	
 	
-	@PostMapping("operator/add/{key}")
+	@PostMapping("/operator/add/{key}")
 	public ResponseEntity<Operator>  addOPerator(@Valid @RequestBody Operator opt, @PathVariable String key){
 		     
          return new ResponseEntity<Operator>(adminService.addOperator(opt, key), HttpStatus.ACCEPTED);
 		 
 	}
 	
-	@PutMapping("operator/update/{key}")
+	@PutMapping("/operator/update/{key}")
 	public ResponseEntity<Operator>   updateOperator(@Valid @RequestBody Operator opt, @PathVariable String key){
 		   
 		return new ResponseEntity<Operator>(adminService.updateOperator(opt, key), HttpStatus.ACCEPTED);
 	}
 	
-	@DeleteMapping("operator/delete/{key}")
+	@DeleteMapping("/operator/delete/{key}")
 	public ResponseEntity<Operator> deleteOperator(@RequestBody Integer optId, @PathVariable String key){
 		   return new ResponseEntity<Operator>(adminService.deleteOperator(optId, key), HttpStatus.ACCEPTED);
 	}
 	
-	@GetMapping("operator/all/{key}")
+	@GetMapping("/operator/all/{key}")
 	public ResponseEntity<List<Operator>> getAllOperator(@PathVariable String key){
 		    return new ResponseEntity<List<Operator>>(adminService.getAllOperators(key), HttpStatus.OK);
 	}
 	
 	
-	@GetMapping("operator/get/{id}/{key}")
+	@GetMapping("/operator/get/{id}/{key}")
 	public ResponseEntity<Operator> getOperatorById(@PathVariable Integer id, @PathVariable String key){
 		   return new ResponseEntity<Operator>(adminService.getOperatorById(id, key), HttpStatus.OK);
 	}
 	
-	@GetMapping("operator/getdept/{id}/{key}")
+	@GetMapping("/operator/getdept/{id}/{key}")
 	public ResponseEntity<List<Operator>> getAllOperatorByDeptId(@PathVariable Integer id, @PathVariable String key){
 		   return new ResponseEntity<List<Operator>>(adminService.getAllOperatorWithDeptId(id, key), HttpStatus.OK);
 	}
 	
-	@PostMapping("operator/assign/{key}")
+	@PostMapping("/operator/assign/{key}")
 	private ResponseEntity<OperatorDTO> assignDepartmentToOperator(@Valid @RequestBody OperatorDTO optDto, @PathVariable String key){
 		  return new ResponseEntity<OperatorDTO>(adminService.assignDeptToOperator(optDto.getId(),optDto.getDept_id(), key), HttpStatus.OK);
 	}

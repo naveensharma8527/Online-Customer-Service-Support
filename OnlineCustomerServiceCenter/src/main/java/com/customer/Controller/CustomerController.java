@@ -20,7 +20,7 @@ import com.customer.Exception.CustomerException;
 import com.customer.Service.CustomerService;
 
 @RestController
-@RequestMapping("customer")
+@RequestMapping("/customer")
 public class CustomerController {
 	
 	@Autowired
